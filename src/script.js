@@ -30,12 +30,13 @@ class GetResponses {
 }
 
 async function requestUser(user) {
+  console.log(process.env.API_KEY)
   const usereg = "michaelessiet";
   fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
       'Authorization':
-        "Bearer" + " " + "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",
+        "Bearer" + " " + `${process.env.API_KEY}`,
       "Content-Type": "application/graphql",
     },
     body: JSON.stringify({
