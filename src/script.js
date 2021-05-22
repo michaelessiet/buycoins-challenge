@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 
 const fullname = document.getElementById("name");
 const form = document.getElementById("form");
@@ -127,3 +126,4 @@ form.addEventListener("submit", (e) => {
   requestUser(document.querySelector('#name').value)
   e.preventDefault();
 });
+
