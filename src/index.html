@@ -1,11 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeJS Starter</title>
-</head>
-<body>
-    <canvas class="webgl"></canvas>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Coding Challenge</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+    * {
+      font-family: "Roboto", sans-serif;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .nameinput {
+      margin-left: 1rem;
+      background-color: transparent;
+      border-radius: 6px;
+      border: solid 1px gray;
+      outline: none;
+      width: 17rem;
+      height: 1.3rem;
+      color: white;
+      padding: 5px;
+    }
+
+    .nameinput::placeholder {
+      color: rgb(201, 194, 177);
+    }
+
+    .nameinput:focus {
+      background-color: white;
+      color: black;
+    }
+
+    .nameinput:focus::placeholder {
+      color: gray;
+    }
+
+    .body {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .userinfocol {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+    }
+
+    #profiledescription {
+      width: 300px;
+    }
+
+    #profileimage {
+      width: 18rem;
+      border-radius: 50%;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: rgb(37, 41, 47);
+      padding: 1rem;
+    }
+
+    .navbarlink {
+      text-decoration: none;
+      color: white;
+      padding-left: 1rem;
+    }
+
+    .navbarlink:hover {
+      opacity: 0.5;
+    }
+
+    .right-col{
+      margin-bottom: 3rem;
+    }
+
+    .tabbaritem {
+      border-bottom: none 2px;
+      padding-bottom: 1rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      cursor: pointer;
+      opacity: 0.5;
+    }
+
+    #reponumber {
+      background-color: rgb(232, 235, 237);
+      padding: 5px;
+      font-size: 11px;
+      border-radius: 50%;
+    }
+
+    .tabbaritem:hover {
+      border-bottom: solid 2px black;
+    }
+
+    .searchbar {
+      display: flex;
+      justify-content: center;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .selector{
+      height: 100%;
+    }
+
+    .searchrepo {
+      flex: 5;
+      margin-left: 1rem;
+      background-color: transparent;
+      border-radius: 6px;
+      border: solid 1px rgb(187, 187, 187);
+      outline: none;
+      width: 17rem;
+      height: 1.3rem;
+      color: black;
+      padding: 5px;
+    }
+
+    #repoitem {
+      display: flex;
+      flex-direction: row;
+      border-top: solid rgba(187, 187, 187, 0.438) 1px;
+      border-bottom: solid rgba(187, 187, 187, 0.438) 1px;
+      padding: 1.5rem 0 1.5rem 0;
+    }
+
+    #repoitemtitle {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #repoitemtitlelink {
+      text-decoration: none;
+      color: rgb(10, 102, 215);
+    }
+    /* margin-bottom: 3rem; */
+    #repoitemtitlelink:hover {
+      text-decoration: underline;
+    }
+
+    #repodesc {
+      opacity: 0.6;
+    }
+
+    #repolang {
+      opacity: 0.6;
+      font-size: 14px;
+    }
+
+    #repoupdatetime {
+      opacity: 0.6;
+      font-size: 14px;
+      padding: 1rem;
+    }
+
+    @media (max-width: 960px) {
+      .navbar{
+        width: 100vw;
+      }
+
+      #navbarlink{
+        display: none;
+      }
+
+      .body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .userinfocol {
+        padding-bottom: 2rem;
+      }
+
+      #avatarnamecontainer{
+        display: flex;
+        flex-direction:row;
+      }
+
+      #profileimage {
+        width: 4rem;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .right-col{
+        width:100vw;
+      }
+
+      .tabbar{
+        overflow-x: scroll;
+      }
+
+      .tabbaritem :first-child{
+        display:none;
+      }
+
+      .repotab{
+        padding-left: 5px;
+      }
+
+      #reponumber{
+        display:inline;
+      }
+
+      .searchbar{
+        flex-direction:column;
+      }
+
+      .selectorcontainer{
+        display: flex;
+        flex-direction: row;
+        height:30px;
+        margin-top: 1rem;
+      }
+
+      #repoitem {
+      display: flex;
+      flex-direction: row;
+      border-top: solid rgba(187, 187, 187, 0.438) 1px;
+      border-bottom: solid rgba(187, 187, 187, 0.438) 1px;
+      padding: 1.5rem;
+    }
+    }
+  </style>
+  <body>
+    <div class="navbar">
+      <span class="fab fa-github fa-2x" style="color: white"></span>
+      <form action="" id="form" method="get">
+        <div>
+          <input
+            class="nameinput"
+            type="text"
+            name="name"
+            id="name"
+            required
+            placeholder="Search using a username"
+          />
+          <div id="error"></div>
+        </div>
+        <!-- <button type="submit">Submit</button> -->
+      </form>
+      <a href="" class="navbarlink" id="navbarlink">Pull requests</a>
+      <a href="" class="navbarlink" id="navbarlink">Issues</a>
+      <a href="" class="navbarlink" id="navbarlink">Marketplace</a>
+      <a href="" class="navbarlink" id="navbarlink">Explore</a>
+    </div>
+    <div class="body">
+      <div class="userinfocol">
+        <div id="avatarnamecontainer">
+          <img
+          src="https://lh3.googleusercontent.com/proxy/qWbhkkKuGZXSw4zY8y4A3hLNH2ONoUNNf7a7H0lTaCmMQPiWRsLvZYo_2tfO2yG3EPixPipzC5DHFckcEZgUSN4fj9XUpuYKOiAkzCWPrURqO-ubB8R7wYtcNx8KP-TPl_RyKa_gsg"
+          id="profileimage"
+          alt=""
+        />
+        <div id="namecontainer">
+          <h1 id="githubname">Github Name</h1>
+          <h3 id="username" style="font-weight: bold; color: gray">
+            GitHub Username
+          </h3>
+        </div>
+        </div>
+        <p id="profiledescription">GitHub profile description</p>
+        <div style="display: flex; flex-direction: row">
+          <div>
+            <span id="followers">N/A</span>
+            <span style="font-size: 14px; opacity: 0.7">followers</span>
+          </div>
+          <div style="width: 1rem"></div>
+          <div>
+            <span id="following">N/A</span>
+            <span style="font-size: 14px; opacity: 0.7">following</span>
+          </div>
+          <div style="width: 1rem"></div>
+          <div>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Linecons_big-star.svg/1200px-Linecons_big-star.svg.png"
+              style="width: 1rem"
+              alt=""
+            />
+            <span id="stars">Stars</span>
+          </div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="tabbar" style="display: flex; flex-direction: row">
+          <div class="tabbaritem">
+            <span class="fa fa-book-open"></span>
+            <span style="padding-left: 5px">Overview</span>
+          </div>
+          <div
+            class="tabbaritem"
+            style="border-bottom: solid 2px #e97f6d; opacity: 1"
+          >
+            <span class="fa fa-book"></span>
+            <span  class="repotab"
+              >Repository <span id="reponumber"></span
+            ></span>
+          </div>
+          <div class="tabbaritem">
+            <span class="fa fa-chart-bar"></span>
+            <span style="padding-left: 5px">Projects</span>
+          </div>
+          <div class="tabbaritem">
+            <span class="fa fa-cube"></span>
+            <span style="padding-left: 5px">Packages</span>
+          </div>
+        </div>
+        <div class="searchbar">
+          <input
+            type="text"
+            placeholder="Find a repository..."
+            class="searchrepo"
+            id="searchrepo"
+          />
+          <div class="selectorcontainer">
+            <select
+            name="Type"
+            class="selector"
+            style="
+              margin-left: 1rem;
+              border-radius: 6px;
+              background-color: white;
+              outline: none;
+              border: solid 1px rgb(187, 187, 187);
+            "
+            id=""
+          >
+            <option value="" disabled selected>Type</option>
+            <option value="">All</option>
+            <option value="">Sources</option>
+            <option value="">Forks</option>
+            <option value="">Archived</option>
+            <option value="">Mirrors</option>
+          </select>
+          <select
+            name="Type"
+            class="selector"
+            style="
+              margin-left: 5px;
+              border-radius: 6px;
+              background-color: white;
+              outline: none;
+              border: solid 1px rgb(187, 187, 187);
+            "
+            id=""
+          >
+            <option value="" disabled selected>Language</option>
+            <option value="">All</option>
+            <option value="">JavaScript</option>
+            <option value="">HTML</option>
+            <option value="">CSS</option>
+            <option value="">Shell</option>
+            <option value="">TypeScript</option>
+            <option value="">Dart</option>
+            <option value="">PHP</option>
+          </select>
+          <select
+            name="Type"
+            class="selector"
+            style="
+              margin-left: 5px;
+              border-radius: 6px;
+              background-color: white;
+              outline: none;
+              border: solid 1px rgb(187, 187, 187);
+            "
+            id=""
+          >
+            <option value="" disabled selected>Sort</option>
+            <option value="">Last updated</option>
+            <option value="">Stars</option>
+          </select>
+          </div>
+        </div>
+        <div class="repocol" id="repocol">
+          <div id="repoitem">
+            <div id="repoitemtitle">
+              <h2>
+                <a
+                  href="http://"
+                  target="_blank"
+                  id="repoitemtitlelink"
+                  rel="noopener noreferrer"
+                  >Repo Name</a
+                >
+              </h2>
+              <p id="repodesc">Repo description</p>
+              <span>
+                <span id="repolang">Repo language</span>
+                <span id="repoupdatetime">Repoupdatetime</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
