@@ -35,7 +35,7 @@ async function requestUser(user) {
     method: "POST",
     headers: {
       'Authorization':
-        "Bearer" + " " + "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",
+        "Bearer" + " " + "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",
       "Content-Type": "application/graphql",
     },
     body: JSON.stringify({
