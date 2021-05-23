@@ -3,6 +3,7 @@ const Dotenv = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
+const { webpack, EnvironmentPlugin } = require('webpack')
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/script.js'),
@@ -24,7 +25,10 @@ module.exports = {
             minify: true
         }),
         new MiniCSSExtractPlugin(),
-				new Dotenv()
+				// new Dotenv(),
+				new EnvironmentPlugin({
+					API_KEY:''
+				})
     ],
     module:
     {
