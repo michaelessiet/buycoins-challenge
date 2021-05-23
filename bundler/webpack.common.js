@@ -27,7 +27,7 @@ module.exports = {
         new MiniCSSExtractPlugin(),
 				// new Dotenv(),
 				new EnvironmentPlugin({
-					API_KEY:'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'
+					API_KEY:''
 				})
     ],
     module:
