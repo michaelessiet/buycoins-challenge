@@ -1,5 +1,5 @@
-# Three.js Starter
-Courtesy of Bruno Simon of https://threejs-journey.xyz/
+# Buycoins Coding Challenge
+This repository is for a coding challenge given by Buycoins Africa. It is a simple github user repository page clone. It was made without the use of any javascript frameworks.
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
