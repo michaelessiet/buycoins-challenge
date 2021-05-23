@@ -80,6 +80,7 @@
     #profileimage {
       width: 18rem;
       border-radius: 50%;
+      border: 1px solid rgb(187, 187, 187);
     }
 
     .navbar {
@@ -101,6 +102,12 @@
 
     .right-col{
       margin-bottom: 3rem;
+    }
+
+    .tabbar{
+      display: block;
+      border-bottom:1px solid rgba(187, 187, 187, 0.63);
+     
     }
 
     .tabbaritem {
@@ -153,6 +160,7 @@
       border-top: solid rgba(187, 187, 187, 0.438) 1px;
       border-bottom: solid rgba(187, 187, 187, 0.438) 1px;
       padding: 1.5rem 0 1.5rem 0;
+      width:50vw
     }
 
     #repoitemtitle {
@@ -171,6 +179,7 @@
 
     #repodesc {
       opacity: 0.6;
+      width: 500px;
     }
 
     #repolang {
@@ -202,6 +211,11 @@
       .userinfocol {
         padding-bottom: 2rem;
       }
+
+      #repodesc {
+      opacity: 0.6;
+      width: 100%;
+    }
 
       #avatarnamecontainer{
         display: flex;
@@ -251,6 +265,7 @@
       border-top: solid rgba(187, 187, 187, 0.438) 1px;
       border-bottom: solid rgba(187, 187, 187, 0.438) 1px;
       padding: 1.5rem;
+      width:auto;
     }
     }
   </style>
@@ -419,7 +434,7 @@
               <p id="repodesc">Repo description</p>
               <span>
                 <span id="repolang">Repo language</span>
-                <span id="repoupdatetime">Repoupdatetime</span>
+                <span id="repoupdatetime">Last update</span>
               </span>
             </div>
           </div>

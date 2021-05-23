@@ -30,7 +30,7 @@ class GetResponses {
 }
 
 async function requestUser(user) {
-  console.log(process.env.API_KEY)
+  // console.log(process.env.API_KEY)
   const usereg = "michaelessiet";
   fetch("https://api.github.com/graphql", {
     method: "POST",
@@ -93,7 +93,7 @@ async function requestUser(user) {
       profileimage.setAttribute('src', data['data']['user']['avatarUrl'])
       repolist = data["data"]['user']['repositories']['edges']
       reponumber.innerText = repolist.length
-      console.log(repolist)
+      // console.log(repolist)
       for(let i= 0; i<repolist.length; i++){
         let listitem = document.createElement('div')
 
@@ -101,7 +101,7 @@ async function requestUser(user) {
         repoitemtitlelink.setAttribute('href', repolist[i]['node']['url'])
         repodesc.innerText = repolist[i]['node']['description']
         repoupdatetime.innerText = `Updated on ${new Date(repolist[i]['node']['updatedAt']).toDateString()}`
-        console.log(repolist[i]['node']['updatedAt'])
+        // console.log(repolist[i]['node']['updatedAt'])
 
         if( repolist[i]['node']['primaryLanguage'] !== null){
           repolang.innerText = repolist[i]['node']['primaryLanguage']['name']
